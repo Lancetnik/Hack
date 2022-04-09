@@ -5,7 +5,7 @@ module.exports = defineConfig({
     'vuetify'
   ],
 
-  outputDir: process.env.NODE_ENV === 'production' ? '../back/app/static' : 'dist/',
+  outputDir: process.env.NODE_ENV === 'production' ? '../back/app/index/static' : 'dist/',
   // Все ниже - относительно outputDir
   indexPath: process.env.NODE_ENV === 'production' ? '../templates/index.html' : 'index.html',
   assetsDir: '',

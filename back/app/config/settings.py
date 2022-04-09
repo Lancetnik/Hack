@@ -190,13 +190,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-   str(BASE_DIR / "static"),
+   str(BASE_DIR / "index" / "static"),
 )
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': (str(BASE_DIR / 'templates'),),
+        'DIRS': (str(BASE_DIR / "index" / "templates"),),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

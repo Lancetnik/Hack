@@ -1,5 +1,3 @@
-from threading import Thread
-
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
 from services.ws_manager import manager
