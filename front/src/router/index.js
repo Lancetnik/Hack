@@ -18,9 +18,9 @@ const routes = [
         meta: { theme: '#55884F' }
       },
       {
-        path: '/page2',
-        component: () => import('../pages/Main/Page2.vue'),
-        name: 'page2',
+        path: '/scraper',
+        component: () => import('../pages/Main/Scraper.vue'),
+        name: 'scraper',
         meta: { theme: '#544F88' }
       },  
       {

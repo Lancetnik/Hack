@@ -33,6 +33,16 @@ services:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
     command: celery -A config worker -l info
+  
+  sockets:
+    build: ./websockets
+    volumes:
+      - ./websockets/app:/code
+    networks:
+      - app
+    ports:
+      - 8001:8001
+    command: uvicorn serve:app --host 0.0.0.0 --port 8001
 
 volumes:
   data_pg:
