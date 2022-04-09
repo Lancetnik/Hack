@@ -14,7 +14,11 @@ def parse_user_posts(user_id: int, number: Optional[int] = None, socket_id: Opti
         offset = 0
         count = 100
         while posts:
-            posts = get_user_posts(user_id, offset, count)['items']
+            try:
+                posts = get_user_posts(user_id, offset, count)['items']
+            except Exception:
+                return
+
             offset += count
 
             if socket_id is not None:
@@ -24,7 +28,11 @@ def parse_user_posts(user_id: int, number: Optional[int] = None, socket_id: Opti
         offset = 0
         count = 100
         while offset < number:
-            posts = get_user_posts(user_id, offset, count)['items']
+            try:
+                posts = get_user_posts(user_id, offset, count)['items']
+            except Exception:
+                return
+
             offset += count
 
             if socket_id is not None:

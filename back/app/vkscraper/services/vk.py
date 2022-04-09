@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import BadRequest
 
 import vk_api
 
@@ -25,9 +26,12 @@ def search_user(q: str, offset=0, count=1):
 
 
 def get_user_posts(user_id: int, offset=0, count=100):
-    return vk_user_session.method('wall.get', {
-        'owner_id': user_id,
-        'offset': offset,
-        'filter': 'owner',
-        'count': count
-    })
+    try:
+        return vk_user_session.method('wall.get', {
+            'owner_id': user_id,
+            'offset': offset,
+            'filter': 'owner',
+            'count': count
+        })
+    except vk_api.exceptions.ApiError as e:
+        raise BadRequest(e)
