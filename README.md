@@ -15,3 +15,6 @@
 2) Билдим фронтенд в django `npm run build`
 3) Приложение билдится в директории `back/app/static/` и `back/app/templates/`
 и становится доступно из django по `http://127.0.0.1:8000/`
+
+
+Для получения ключа пользователя вк перейдите по [ссылке](https://oauth.vk.com/authorize?client_id=7179611&display=page&scope=friends&response_type=token&v=5.92&state=123456) и скопируйте `access_key` в `config.yml:VK_USER_KEY`

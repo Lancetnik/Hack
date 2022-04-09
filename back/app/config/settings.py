@@ -30,7 +30,6 @@ ALLOWED_HOSTS = tuple({
     '0.0.0.0', '127.0.0.1', 'localhost'
 })
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +43,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'djoser',
-    'drf_yasg'
+    'drf_yasg',
+
+    'map',
+    'vkscraper',
 ]
 
 REST_FRAMEWORK = {
@@ -66,6 +68,25 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
+
+redis_conf = config.get("REDIS", {})
+REDIS_HOST = os.environ.get('REDIS_HOST', default=redis_conf.get('HOST', "127.0.0.1"))
+REDIS_PORT = os.environ.get('REDIS_PORT', default=redis_conf.get('PORT', 6379))
+REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD', default=redis_conf.get('PASSWORD', ''))
+
+if REDIS_PASSWORD:
+    REDIS_URL = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}"
+else:
+    REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
+
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+CELERY_ACCEPT_CONTENT = ('application/json',)
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+
+VK_SERVICE_KEY = os.environ.get('VK_API', default=config.get('VK_API'))
+VK_USER_KEY = os.environ.get('VK_USER_KEY', default=config.get('VK_USER_KEY'))
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
