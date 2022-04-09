@@ -36,5 +36,9 @@ class GetUserPostsBackground(generics.RetrieveAPIView):
     def get(self, request, user_id):
         number = self.request.query_params.get('number')
         if number: number = int(number)
-        parse_user_posts.delay(user_id, number)
+
+        socket_id = self.request.query_params.get('socket_id')
+        if socket_id: socket_id = int(socket_id)
+
+        parse_user_posts.delay(user_id, number, socket_id)
         return Response(status=status.HTTP_201_OK)
