@@ -150,6 +150,11 @@ POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', default=db.get("PASSWORD
 POSTGRES_HOST = os.environ.get('POSTGRES_HOST', default=db.get("HOST", "localhost"))
 POSTGRES_PORT = os.environ.get('POSTGRES_PORT', default=db.get("PORT", "5432"))
 
+sockets = config.get("WEBSOCKETS", {})
+WEBSOCKETS_PORT = os.environ.get('WEBSOCKETS_PORT', default=sockets.get("PORT", "8001"))
+WEBSOCKETS_HOST = os.environ.get('WEBSOCKETS_HOST', default=sockets.get("HOST", "localhost"))
+WEBSOCKETS_URL = f'http://{WEBSOCKETS_HOST}:{WEBSOCKETS_PORT}'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2' if POSTGRES_NAME else "django.db.backends.sqlite3",

@@ -32,6 +32,8 @@ services:
       REDIS_HOST: redis
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
+      WEBSOCKETS_HOST: sockets
+      WEBSOCKETS_PORT: 8001
     command: celery -A config worker -l info
   
   sockets:
