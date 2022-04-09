@@ -28,6 +28,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', IndexView.as_view()),
+    path('geo/', include('map.urls')),
 
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
