@@ -12,6 +12,6 @@
 
 ### Frontend
 1) Переходим во `front/`, устанавливаем зависимости `npm install`
-2) Билдим фронтенд в django `npm build`
+2) Билдим фронтенд в django `npm run build`
 3) Приложение билдится в директории `back/app/static/` и `back/app/templates/`
 и становится доступно из django по `http://127.0.0.1:8000/`
