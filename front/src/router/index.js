@@ -8,13 +8,13 @@ const routes = [
   {
     path: '/',
     component: () => import('../pages/Main.vue'),
-    redirect: {name: 'page1'},
+    redirect: {name: 'map'},
     name: 'main',
     children: [
       {
-        path: '/page1',
-        component: () => import('../pages/Main/Page1.vue'),
-        name: 'page1',
+        path: '/map',
+        component: () => import('../pages/Main/Map.vue'),
+        name: 'map',
         meta: { theme: '#55884F' }
       },
       {

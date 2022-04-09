@@ -2,9 +2,11 @@
   <div>
     <Header />
     <Navbar />
-    <keep-alive>
-      <router-view style="margin-bottom: 60px" />
-    </keep-alive>
+    <v-container>
+      <keep-alive>
+        <router-view class="main"/>
+      </keep-alive>
+    </v-container>
     <Footer />
   </div>
 </template>
@@ -23,3 +25,11 @@ export default {
   },
 };
 </script>
+
+
+<style lang="scss">
+.main {
+  margin-bottom: 60px;
+  z-index: 3;
+}
+</style>

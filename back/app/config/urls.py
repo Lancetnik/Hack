@@ -15,12 +15,11 @@ from index.views import IndexView
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Documnets Cloud API",
+        title="Mozhayka Team hack project",
         default_version='v1',
-        description="Test description",
+        description="",
         terms_of_service="https://127.0.0.1:8000",
-        contact=openapi.Contact(email="diementros@gmail.com"),
-        license=openapi.License(name="My License"),
+        contact=openapi.Contact(email="diementros@gmail.com")
     ),
     public=True,
     permission_classes=[permissions.AllowAny],

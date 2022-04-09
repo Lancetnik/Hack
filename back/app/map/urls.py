@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = (
-    path('position/', views.GetPostition.as_view()),
+    path('position/<int:pk>/', views.GetPostition.as_view()),
 )

@@ -1,5 +1,5 @@
 <template>
-  <div>Page2</div>
+  <v-card>Page2</v-card>
 </template>
 
 
