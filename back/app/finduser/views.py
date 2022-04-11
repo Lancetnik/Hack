@@ -23,6 +23,6 @@ class FindUserByPhone(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response(
-            get_phone_data(serializer.data['phone']),
+            get_phone_data(request.data['phone']),
             status=status.HTTP_200_OK
         )

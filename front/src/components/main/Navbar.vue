@@ -1,26 +1,28 @@
 <template>
   <div class="mb-6">
-    <v-toolbar flat dark class='transparent-navbar'>
+    <v-toolbar dark :style="'background: ' + $route.meta.theme">
       <v-tabs fixed-tabs>
-        <v-tab :to="{ name: 'first' }"> Первая </v-tab>
-        <v-tab :to="{ name: 'map' }">Карта</v-tab>
-        <v-tab :to="{ name: 'scraper' }">Соцсети </v-tab>
-        <v-tab :to="{ name: 'photo' }">Поиск места по фото</v-tab>
-        <v-tab :to="{ name: 'findclone' }">Поиск страницы по фото</v-tab>
+        <v-tab v-for="header in headers" :key="header.route"
+        :to="{ name: header.route }" v-text="header.name"></v-tab>
       </v-tabs>
     </v-toolbar>
-
-    <div
-      class="color-row"
-      :style="'background: ' + $route.meta.theme"
-    ></div>
   </div>
 </template>
+
 
 
 <script>
 export default {
   name: "Navbar",
+
+  data: () => ({
+    headers: [
+      { route: "first", name: "Отслеживание номера телефона" },
+      { route: "map", name: "Карта" },
+      { route: "photo", name: "Поиск места по фото" },
+      { route: "findclone", name: "Поиск страницы по фото"}
+    ]
+  }),
 };
 </script>
 

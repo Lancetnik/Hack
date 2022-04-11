@@ -35,7 +35,7 @@
           <v-col md="4">
             <v-card>
               <v-card-title>
-                Данные смартфона
+                Данные смартфона:
               </v-card-title>
               <v-card-text>
                 Оператор: {{ this.operator }}
@@ -70,7 +70,15 @@
                 ></v-progress-circular>
               </v-card-text>
               <v-card-text>
-                Местоположение: {{ this.location }}
+                Долгота: {{ this.longitude }}
+                <v-progress-circular
+                  v-if="this.load==true"
+                  indeterminate
+                  color="green"
+                ></v-progress-circular>
+              </v-card-text>
+                <v-card-text>
+                Широта: {{ this.latitude }}
                 <v-progress-circular
                   v-if="this.load==true"
                   indeterminate
@@ -109,12 +117,15 @@ export default {
   methods: {
     submitNumber() {
       this.load = true
-      this.$http.post("geo/phone/", this.post).then((response) => {
-        this.operator = response.data.operator,
-        this.country = response.data.country,
-        this.region = response.data.region,
-        this.city = response.data.city,
-        this.location = `${response.data.location[0]}-${response.data.location[1]}`
+      this.$http.post("social_users/find/phone/", {'phone':this.phone})
+      .then((response) => {
+        this.operator = response.data.location.operator,
+        this.country = response.data.location.country,
+        this.region = response.data.location.region,
+        this.city = response.data.location.city,
+        this.latitude = response.data.location.geo_city.latitude,
+        this.longitude = response.data.location.geo_city.longitude,
+        this.points = [response.data.point]
       })
       .finally(()=>{
         this.load = false
