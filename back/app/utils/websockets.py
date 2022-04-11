@@ -9,7 +9,7 @@ from .grpc import websockets_pb2, websockets_pb2_grpc
 
 
 def send_to_user_grpc(user_id: int, message):
-    with grpc.insecure_channel('0.0.0.0:8002') as channel:
+    with grpc.insecure_channel(f'{settings.WEBSOCKETS_HOST}:{settings.WEBSOCKETS_PORT+1}') as channel:
         stub = websockets_pb2_grpc.SenderStub(channel)
         response = stub.SendMessage(websockets_pb2.Message(
             message=json.dumps({
@@ -19,9 +19,8 @@ def send_to_user_grpc(user_id: int, message):
         ))
 
 
-
 def send_to_group_grpc(group: str, message):
-    with grpc.insecure_channel('0.0.0.0:8002') as channel:
+    with grpc.insecure_channel(f'{settings.WEBSOCKETS_HOST}:{settings.WEBSOCKETS_PORT+1}') as channel:
         stub = websockets_pb2_grpc.SenderStub(channel)
         response = stub.SendMessage(websockets_pb2.Message(
             message=json.dumps({
