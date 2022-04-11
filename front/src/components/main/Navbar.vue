@@ -2,6 +2,7 @@
   <div class="mb-6">
     <v-toolbar flat dark class='transparent-navbar'>
       <v-tabs fixed-tabs>
+        <v-tab :to="{ name: 'first' }"> Первая </v-tab>
         <v-tab :to="{ name: 'map' }">Карта</v-tab>
         <v-tab :to="{ name: 'scraper' }">Соцсети </v-tab>
         <v-tab :to="{ name: 'photo' }">Поиск места по фото</v-tab>
