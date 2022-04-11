@@ -8,3 +8,9 @@ PyYAML==6.0
 loguru
 psycopg2
 requests==2.27.1
+
+scipy
+scikit-image
+tensorflow
+tensorflow_hub
+pandas

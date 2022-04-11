@@ -1,29 +1,19 @@
-import matplotlib.pyplot as plt
-from absl import logging
-import matplotlib.pyplot as plt
+import csv
+import glob
+import os
+import json
+import urllib.request
+
+import ast
+import pandas as pd
 import numpy as np
 from PIL import Image, ImageOps
 from scipy.spatial import cKDTree
-from skimage.feature import plot_matches
 from skimage.measure import ransac
 from skimage.transform import AffineTransform
-from six import BytesIO
 import tensorflow as tf
 import tensorflow_hub as hub
-from six.moves.urllib.request import urlopen
-import urllib.request
-import skimage
-import os
-import json
 
-import csv
-import codecs
-import glob
-from itertools import accumulate
-from os import walk
-import pandas as pd
-import numpy as np
-import ast
 
 delf = hub.load('model').signatures['default']
 destfolder='./data/Train/Train1/raw/'
@@ -113,13 +103,13 @@ def MODEL():
 
     list_f = []
 
-    for (dirpath, dirnames, filenames) in walk(destfolder):
+    for (dirpath, dirnames, filenames) in os.walk(destfolder):
         list_f.extend(filenames)
         break
 
     list_test =[]
 
-    for (dirpath, dirnames, filenames) in walk(path_im_test):
+    for (dirpath, dirnames, filenames) in os.walk(path_im_test):
         list_test.extend(filenames)
         break
 
@@ -135,13 +125,13 @@ def MODEL():
 
     list_true = []
 
-    for (dirpath, dirname, filenames) in walk(result_path):
+    for (dirpath, dirname, filenames) in os.walk(result_path):
         list_true.extend(filenames)
         break
 
     list_false = []
 
-    for (dirpath, dirname, filenames) in walk(result_path_false):
+    for (dirpath, dirname, filenames) in os.walk(result_path_false):
         list_false.extend(filenames)
         break
 

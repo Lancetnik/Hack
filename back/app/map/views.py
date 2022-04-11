@@ -22,14 +22,11 @@ class GetLocation(APIView):
         im = Image.open(request.data['file'])
         # im.save(fp='./data/Test/final_test_ciphered/image.jpg')
         # result_model = MODEL()
-        result_model = [59.937, 30.3089]
+        result_model = [59.937, 31.31]
         point = PointSerializer(data={
-            'id': random.randint(1,10),
+            'id': random.randint(1, 10),
             'latitude': result_model[0],
             'longitude': result_model[1]            
         })
         point.is_valid()
         return Response(point.data)
-
-      
-

@@ -19,6 +19,7 @@ export default {
 
   async created() {
     this.$http.get('geo/position/1/').then((response) => {
+      console.log(response.data)
       this.points.push(response.data)
     })
   }
