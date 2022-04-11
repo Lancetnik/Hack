@@ -1,11 +1,11 @@
 <template>
   <div class="mb-6">
-    <v-toolbar dark flat class='transparent-navbar'>
+    <v-toolbar flat dark class='transparent-navbar'>
       <v-tabs fixed-tabs>
-        <v-tab :to="{ name: 'map' }"> Карта </v-tab>
-        <v-tab :to="{ name: 'scraper' }"> Соцсети </v-tab>
-        <v-tab :to="{ name: 'photo' }"> Поиск по фотографии </v-tab>
-        <v-tab :to="{ name: 'page3' }"> page3 </v-tab>
+        <v-tab :to="{ name: 'map' }">Карта</v-tab>
+        <v-tab :to="{ name: 'scraper' }">Соцсети </v-tab>
+        <v-tab :to="{ name: 'photo' }">Поиск места по фото</v-tab>
+        <v-tab :to="{ name: 'findclone' }">Поиск страницы по фото</v-tab>
       </v-tabs>
     </v-toolbar>
 

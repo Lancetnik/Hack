@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'map',
     'vkscraper',
+    'finduser'
 ]
 
 REST_FRAMEWORK = {
@@ -154,6 +155,10 @@ sockets = config.get("WEBSOCKETS", {})
 WEBSOCKETS_PORT = os.environ.get('WEBSOCKETS_PORT', default=sockets.get("PORT", "8001"))
 WEBSOCKETS_HOST = os.environ.get('WEBSOCKETS_HOST', default=sockets.get("HOST", "localhost"))
 WEBSOCKETS_URL = f'http://{WEBSOCKETS_HOST}:{WEBSOCKETS_PORT}'
+
+findclone = config.get("FINDCLONE", {})
+FIND_LOGIN = os.environ.get('FINDCLONE_LOGIN', default=findclone.get('LOGIN'))
+FIND_PASSWORD = os.environ.get('FINDCLONE_PASSWORD', default=findclone.get('PASSWORD'))
 
 DATABASES = {
     'default': {

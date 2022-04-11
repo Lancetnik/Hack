@@ -29,6 +29,7 @@ urlpatterns = [
     path('', IndexView.as_view()),
     path('geo/', include('map.urls')),
     path('vk/', include('vkscraper.urls')),
+    path('social_users/', include('finduser.urls')),
 
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
