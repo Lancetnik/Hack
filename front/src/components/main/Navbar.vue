@@ -9,10 +9,10 @@
       </v-tabs>
     </v-toolbar>
 
-    <div
+    <!-- <div
       class="color-row"
       :style="'background: ' + $route.meta.theme"
-    ></div>
+    ></div> -->
   </div>
 </template>
 

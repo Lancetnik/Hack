@@ -52,8 +52,9 @@ export default {
 
   data() {
     return {
-      points: [59.937, 30.3089],
+      // points: [59.937, 30.3089],
       file: '',
+      points: [],
       news: ["https://www.iguides.ru/upload/medialibrary/9f8/9f8fdff471b7d281f81f694c100b5adc.png"],
     }
   },
@@ -62,7 +63,7 @@ export default {
     handleFilesUpload() {
       this.file = this.$refs.file.files[0];
     },
-    submitFile() {
+    async submitFile() {
       let formData = new FormData();
       formData.append('file', this.file);
       axios.post('http://127.0.0.1:8000/geo/single-file/',
@@ -71,12 +72,10 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         }
-      ).then(function() {
-        console.log('SUCCESS!!');
+      ).then((response) => {
+        this.points.push(response.data)
       })
-      .catch(function(){
-        console.log('FAILURE!!');
-      });
+      console.log(this.points)
     },
   },
   computed: {
