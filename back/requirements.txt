@@ -9,6 +9,7 @@ PyYAML==6.0
 redis==4.2.2
 requests==2.27.1
 vk-api==11.9.7
+Pillow==9.1.0
 
 loguru
 psycopg2

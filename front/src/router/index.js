@@ -30,9 +30,9 @@ const routes = [
         meta: { theme: '#37889A' }
       },  
       {
-        path: '/page4',
-        component: () => import('../pages/Main/Page4.vue'),
-        name: 'page4',
+        path: '/photo-seacrh',
+        component: () => import('../pages/Main/PhotoSearch.vue'),
+        name: 'photo',
         meta: { theme: '#374D9A' }
       }  
     ]

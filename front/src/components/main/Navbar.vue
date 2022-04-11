@@ -4,8 +4,8 @@
       <v-tabs fixed-tabs>
         <v-tab :to="{ name: 'map' }"> Карта </v-tab>
         <v-tab :to="{ name: 'scraper' }"> Соцсети </v-tab>
+        <v-tab :to="{ name: 'photo' }"> Поиск по фотографии </v-tab>
         <v-tab :to="{ name: 'page3' }"> page3 </v-tab>
-        <v-tab :to="{ name: 'page4' }"> page4 </v-tab>
       </v-tabs>
     </v-toolbar>
 

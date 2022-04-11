@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 from PIL import Image
 from loguru import logger
 
@@ -22,4 +23,3 @@ class GetLocation(APIView):
         im = Image.open(request.data['file'])
         # logger.debug(request.data['file'])
         im.save(fp='./image.jpg')
-
