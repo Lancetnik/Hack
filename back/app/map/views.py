@@ -1,5 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from PIL import Image
+from loguru import logger
 
 from .serializers import PointSerializer
 
@@ -13,3 +15,12 @@ class GetPostition(APIView):
         })
         point.is_valid()
         return Response(point.data)
+
+
+class GetLocation(APIView):
+    def post(self, request):
+        im = Image.open(request.data['file'])
+        # logger.debug(request.data['file'])
+        im.save(fp='./image.jpg')
+      
+
