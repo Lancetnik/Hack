@@ -12,7 +12,6 @@ from .serializers import (
 from .tasks import parse_user_posts
 
 
-
 class FindUser(generics.RetrieveAPIView):
     paginator = VkPaginator(page_size=1)
     serializer_class = EmptySerializer
