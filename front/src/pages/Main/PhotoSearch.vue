@@ -1,6 +1,6 @@
 <template>
   <v-card flat style="background: transparent">
-    <v-row>
+    <v-row style="z-index: 20">
       <v-col md="3">
         <v-card>
           <v-card-title> Панель управления </v-card-title>
@@ -26,7 +26,7 @@
 
       <v-col md="4">
         <v-card flat style="background: transparent">
-          <Map :points="points" />
+          <Map :points="points" :center="center" :zoom='zoom'/>
         </v-card>
       </v-col>
     </v-row>
@@ -45,11 +45,14 @@ export default {
 
   data() {
     return {
-      points: [59.937, 30.3089],
       file: null,
+      points: [],
       news: [
         "https://www.iguides.ru/upload/medialibrary/9f8/9f8fdff471b7d281f81f694c100b5adc.png",
       ],
+
+      center: [59.937, 30.3089],
+      zoom: 10
     };
   },
 
@@ -57,8 +60,7 @@ export default {
     handleFilesUpload() {
       this.file = this.$refs.file.files[0];
     },
-
-    submitFile() {
+    async submitFile() {
       let formData = new FormData();
       formData.append("file", this.file);
       this.$http
@@ -67,14 +69,14 @@ export default {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then(function () {
-          console.log("SUCCESS!!");
-        })
-        .catch(function () {
-          console.log("FAILURE!!");
+        .then((response) => {
+          this.points = [response.data];
+          this.center = response.data.geometry.coordinates;
+          this.zoom = 12;
         });
     },
   },
+
   computed: {
     url() {
       if (!this.file) return;
