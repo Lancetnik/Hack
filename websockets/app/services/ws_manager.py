@@ -49,7 +49,7 @@ class ConnectionManager:
         elif isinstance(message, dict):
             for connection in sockets:
                 await connection.send_json(message)
-        
+
         else:
             raise ValueError('message should be string or dict')
 
