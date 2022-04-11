@@ -171,6 +171,7 @@ DATABASES = {
     }
 }
 
+PROXIE = config.get('PROXIE')
 
 AUTH_PASSWORD_VALIDATORS = [
     {

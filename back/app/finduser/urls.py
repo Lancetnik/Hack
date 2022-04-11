@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import FindUsersView
+from . import views
 
 
 urlpatterns = [
-    path('find/', FindUsersView.as_view()),
+    path('find/', views.FindUsersView.as_view()),
+    path('find/phone/', views.FindUserByPhone.as_view()),
 ]
