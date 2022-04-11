@@ -22,5 +22,4 @@ class GetLocation(APIView):
         im = Image.open(request.data['file'])
         # logger.debug(request.data['file'])
         im.save(fp='./image.jpg')
-      
 
