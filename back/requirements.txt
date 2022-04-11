@@ -6,7 +6,6 @@ django-filter==21.1
 djangorestframework==3.13.1
 djoser==2.1.0
 drf-yasg==1.20.0
-findclone_api==1.0.3.5
 PyYAML==6.0
 redis==4.2.2
 requests==2.27.1
