@@ -24,9 +24,9 @@ const routes = [
         meta: { theme: '#544F88' }
       },  
       {
-        path: '/page3',
-        component: () => import('../pages/Main/Page3.vue'),
-        name: 'page3',
+        path: '/findclone',
+        component: () => import('../pages/Main/FindClone.vue'),
+        name: 'findclone',
         meta: { theme: '#37889A' }
       },  
       {

@@ -12,3 +12,8 @@ vk-api==11.9.7
 
 loguru
 psycopg2
+
+findclone_api
+requests
+aiohttp
+Pillow

@@ -1,18 +1,18 @@
 <template>
   <div class="mb-6">
-    <v-toolbar dark flat class='transparent-navbar'>
+    <v-toolbar flat class='transparent-navbar'>
       <v-tabs fixed-tabs>
         <v-tab :to="{ name: 'map' }"> Карта </v-tab>
         <v-tab :to="{ name: 'scraper' }"> Соцсети </v-tab>
-        <v-tab :to="{ name: 'page3' }"> page3 </v-tab>
+        <v-tab :to="{ name: 'findclone' }"> Поиск страницы по фото</v-tab>
         <v-tab :to="{ name: 'page4' }"> page4 </v-tab>
       </v-tabs>
     </v-toolbar>
 
-    <div
+    <!-- <div
       class="color-row"
       :style="'background: ' + $route.meta.theme"
-    ></div>
+    ></div> -->
   </div>
 </template>
 
