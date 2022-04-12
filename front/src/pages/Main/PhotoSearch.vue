@@ -4,11 +4,15 @@
       <v-col md="3">
         <v-card>
           <v-card-title> Панель управления </v-card-title>
+          <v-progress-linear
+            v-if="this.load==true"
+            indeterminate
+            :color="$route.meta.theme"
+          ></v-progress-linear>
           <v-file-input v-model="file" />
-          <v-divider />
           <v-card-actions>
             <v-btn
-              color="blue-grey"
+              :color="$route.meta.theme"
               class="ma-2 white--text"
               @click="submitFile()"
             >
@@ -19,14 +23,14 @@
         </v-card>
         <br />
         <v-card>
-          <v-card-text>Location: {{ points }}</v-card-text>
+          <v-card-title>Исходные данные {{ coordinates }}</v-card-title>
           <v-img :src="url" aspect-ratio="1.7"></v-img>
         </v-card>
       </v-col>
 
-      <v-col md="4">
+      <v-col md="9">
         <v-card flat style="background: transparent">
-          <Map :points="points" :center="center" :zoom='zoom'/>
+          <Map :points="points" :center="center" :zoom='zoom' style='height: 650px; width: 100%'/>
         </v-card>
       </v-col>
     </v-row>
@@ -46,13 +50,15 @@ export default {
   data() {
     return {
       file: null,
-      points: [],
+      points: '',
+      coordinates:'',
       news: [
         "https://www.iguides.ru/upload/medialibrary/9f8/9f8fdff471b7d281f81f694c100b5adc.png",
       ],
 
       center: [59.937, 30.3089],
-      zoom: 10
+      zoom: 10,
+      load: false,
     };
   },
 
@@ -61,6 +67,7 @@ export default {
       this.file = this.$refs.file.files[0];
     },
     async submitFile() {
+      this.load = true
       let formData = new FormData();
       formData.append("file", this.file);
       this.$http
@@ -71,10 +78,14 @@ export default {
         })
         .then((response) => {
           this.points = [response.data];
+          this.coordinates = response.data.geometry.coordinates
           this.center = response.data.geometry.coordinates;
           this.zoom = 12;
-        });
-    },
+        })
+        .finally(()=>{
+          this.load = false
+      })
+    }
   },
 
   computed: {

@@ -15,7 +15,7 @@
               ></v-file-input>
             </v-card-text>
             <v-card-actions>
-              <v-btn class="primary" @click="find_user"> Найти страницу </v-btn>
+              <v-btn :color="$route.meta.theme" class=" white--text" @click="find_user"> Найти страницу </v-btn>
             </v-card-actions>
           </v-card>
           <br />
@@ -31,7 +31,7 @@
             <v-progress-circular
               :size="70"
               :width="7"
-              color="purple"
+              :color="$route.meta.theme"
               indeterminate
             ></v-progress-circular>
           </div>
@@ -47,7 +47,7 @@
             hide-default-footer
           >
             <template v-slot:header>
-              <v-toolbar dark color="blue darken-3" class="mb-1">
+              <v-toolbar dark :color="$route.meta.theme" class="mb-1">
                 <v-text-field
                   v-model="search"
                   clearable
@@ -61,10 +61,10 @@
                   <v-spacer></v-spacer>
                   <v-spacer></v-spacer>
                   <v-btn-toggle v-model="sortDesc" mandatory>
-                    <v-btn large depressed color="blue" :value="false">
+                    <v-btn large depressed :color="$route.meta.theme" :value="false">
                       <v-icon>mdi-arrow-up</v-icon>
                     </v-btn>
-                    <v-btn large depressed color="blue" :value="true">
+                    <v-btn large depressed :color="$route.meta.theme" :value="true">
                       <v-icon>mdi-arrow-down</v-icon>
                     </v-btn>
                   </v-btn-toggle>
@@ -108,7 +108,7 @@
                     <v-btn
                       dark
                       text
-                      color="primary"
+                      :color="$route.meta.theme"
                       class="ml-2"
                       v-bind="attrs"
                       v-on="on"
@@ -136,7 +136,7 @@
                 <v-btn
                   fab
                   dark
-                  color="blue darken-3"
+                  :color="$route.meta.theme"
                   class="mr-1"
                   @click="formerPage"
                 >
@@ -145,7 +145,7 @@
                 <v-btn
                   fab
                   dark
-                  color="blue darken-3"
+                  :color="$route.meta.theme"
                   class="ml-1"
                   @click="nextPage"
                 >

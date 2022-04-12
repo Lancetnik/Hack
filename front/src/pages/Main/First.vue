@@ -1,20 +1,20 @@
 <template>
-  <v-card color="gren">
-  <v-row style="z-index: 20;">
-    <v-col fluid>
-      <v-card md="12">
-        <v-card-title>
-          Введите номер телефона, чье местоположение устройства необходимо отследить:
-        </v-card-title>
-        <v-card-text>
-          <v-row>
-            <v-col>
+    <v-row style="z-index: 20">
+      <v-col md="3">
+        <v-card class="ma-4">
+          <v-card-title>
+            Настройки поиска
+          </v-card-title>
+          <v-progress-linear
+            v-if="this.load==true"
+            indeterminate
+            color="success"
+          ></v-progress-linear>
+          <v-card-text>
             <phoneInput v-model='phone'/>
-            </v-col>
-            <v-col>
             <v-btn
               :color="$route.meta.theme"
-              class="ma-2 white--text"
+              class=" white--text"
               @click="submitNumber"
             >
               Запустить
@@ -22,18 +22,9 @@
               mdi-cloud-upload
             </v-icon>
             </v-btn>
-            </v-col>
-            <v-progress-linear
-              v-if="this.load==true"
-              indeterminate
-              color="success"
-            ></v-progress-linear>
-          </v-row>
-        </v-card-text>
-        <br>
-        <v-row>
-          <v-col md="4">
-            <v-card>
+          </v-card-text>
+        </v-card>
+        <v-card class="ma-4">
               <v-card-title>
                 Данные смартфона:
               </v-card-title>
@@ -86,25 +77,19 @@
                 ></v-progress-circular>
               </v-card-text>
             </v-card>
-          </v-col>
-          <v-col>
-            <v-card>
-            <Map :points='points' style='height: 600px; width: 100%'/>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-col>
-  </v-row>
-  </v-card>
+      </v-col>
+      <v-col md="9">
+        <v-card class="ma-4">
+          <Map :points='points' style='height: 650px; width: 100%'/>
+        </v-card>
+      </v-col>
+    </v-row>
 </template>
-
 
 
 <script>
 import Map from "@/components/map/Map.vue";
 import phoneInput from "@/components/phoneField.vue"
-
 
 export default {
   name: "First",
@@ -129,8 +114,7 @@ export default {
       })
       .finally(()=>{
         this.load = false
-      }
-      )
+      })
     }
   },
 
