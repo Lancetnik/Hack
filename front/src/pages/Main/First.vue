@@ -1,4 +1,5 @@
 <template>
+<v-card flat style="background: transparent">
     <v-row style="z-index: 20">
       <v-col md="3">
         <v-card class="ma-4">
@@ -84,6 +85,7 @@
         </v-card>
       </v-col>
     </v-row>
+    </v-card>
 </template>
 
 

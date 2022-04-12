@@ -3,13 +3,17 @@
     <v-row style="z-index: 20">
       <v-col md="3">
         <v-card>
-          <v-card-title> Панель управления </v-card-title>
+          <v-card-title> Настройки поиска </v-card-title>
           <v-progress-linear
             v-if="this.load==true"
             indeterminate
             :color="$route.meta.theme"
           ></v-progress-linear>
-          <v-file-input v-model="file" />
+          <v-file-input
+            v-model="file"
+            class="ma-4"
+            truncate-length="15"
+            label="Фотка"/>
           <v-card-actions>
             <v-btn
               :color="$route.meta.theme"
@@ -23,7 +27,7 @@
         </v-card>
         <br />
         <v-card>
-          <v-card-title>Исходные данные {{ coordinates }}</v-card-title>
+          <v-card-title>Исходные данные: {{ coordinates }}</v-card-title>
           <v-img :src="url" aspect-ratio="1.7"></v-img>
         </v-card>
       </v-col>

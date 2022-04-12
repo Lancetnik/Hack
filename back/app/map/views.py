@@ -5,18 +5,8 @@ from PIL import Image
 import random
 
 from .serializers import PointSerializer
-from .service import *
+# from .service import *
 import time
-
-class GetPostition(APIView):
-    def get(self, request, pk):
-        point = PointSerializer(data={
-            "id": pk,
-            "latitude": 59.937,
-            "longitude": 30.3089
-        })
-        point.is_valid()
-        return Response(point.data)
 
 
 class GetLocation(APIView):
@@ -27,7 +17,7 @@ class GetLocation(APIView):
         time.sleep(4)
         result_model = [59.937, 31.31]
         point = PointSerializer(data={
-            'id': random.randint(1, 10),
+            'id': 1,
             'latitude': result_model[0],
             'longitude': result_model[1]            
         })
