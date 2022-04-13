@@ -138,8 +138,21 @@
         >
           Закончить
         </v-btn>
+        
+        <v-btn     
+          color="primary"
+          class="mx-4 white--text color"
+          @click="exportExcel"
+                  >
+            Экспортировать
+          <v-icon right>
+            mdi-apple-keyboard-caps
+          </v-icon>
+        </v-btn>
+        
+        
       </v-stepper-content>
-
+        
     </v-stepper-items>
   </v-stepper>
 </template>
@@ -150,6 +163,8 @@
 import photosearch from "./PhotoSearch.vue"
 import findclone from "./FindClone.vue"
 import phonesearch from "./PhoneSearch.vue"
+import { saveExcel } from '@progress/kendo-vue-excel-export';
+
 export default {
     components: {
     photosearch,
@@ -157,6 +172,7 @@ export default {
     phonesearch,
   },
   data: () => ({
+       user_data: [],
        e1: 1,
        photo_coordinate: 'Отсутствует',
        phone_coordinate: 'Отсутствует',
@@ -183,7 +199,7 @@ export default {
               else {
                  this.phone_coordinate = 'Отсутсвует' 
               }
-              if (response.data.social_vk.url.length > 0){
+              if (response.data.social_vk.length > 0){
               this.url = response.data.social_vk.url
               this.score = response.data.social_vk.score
               this.name = response.data.social_vk.name
@@ -195,12 +211,35 @@ export default {
                 this.name = 'Отсутсвует'
                 this.image_src = 'Отсутсвует'
               } 
+              this.user_data=[{
+                'Имя':this.name,
+                'Совпадение':this.score,
+                'Ссылка':this.url,
+                'Координаты фото': String(this.photo_coordinate),
+                'Координаты телефон': String(this.phone_coordinate)
+              }]
+              
           })
+
       },
       clean_cache() {
           this.$http
           .get('/social_users/clean_cache/')
-      }
+      },
+          exportExcel () {
+            console.log(this.name)
+            saveExcel({
+                data: this.user_data,
+                fileName: "User_data.xlsx",
+                columns: [
+                  { field: 'Имя'},
+                  { field: 'Совпадение'},
+                  { field: 'Ссылка'},
+                  { field: 'Координаты фото'},
+                  { field: 'Координаты телефон'},
+              ]
+            });
+        },
   },
 
   created() {
