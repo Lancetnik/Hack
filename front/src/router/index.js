@@ -49,6 +49,13 @@ const routes = [{
             name: 'photo',
             meta: { theme: '#374D9A' },
             props: true
+        },
+        {
+            path: '/data_agregation',
+            component: () =>
+                import ('../pages/Main/DataAgregation.vue'),
+            name: 'dataAgregation',
+            meta: { theme: '#8E24AA'}
         }
     ]
 }, ]

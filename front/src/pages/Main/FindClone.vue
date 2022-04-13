@@ -164,6 +164,7 @@
 
 <script>
 export default {
+  name: "findclone",
   data() {
     return {
       // Таблица с новостями

@@ -87,6 +87,7 @@
 import Map from "@/components/map/MapStrava.vue";
 
 export default {
+    name: 'strava',
     props: {
       latitude_1: {
       default: () => { return 59.937 }
@@ -141,12 +142,13 @@ methods: {
       this.user = route.name
       console.log(this.coords)
       this.center = this.coords[0]
-      this.zoom = 16
+      this.zoom = 15
   },
   },
 created() {
   this.center = [this.latitude_1, this.longitude_1]
   this.first_coord = [this.latitude_1+0.005, this.longitude_1+0.005]
+  console.log(this.first_coord)
 },
   computed: {
     url() {

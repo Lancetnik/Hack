@@ -96,7 +96,7 @@
 import Map from "@/components/map/MapPhone.vue";
 
 export default {
-  name: "First",
+  name: "phonesearch",
 
   components: {
     Map

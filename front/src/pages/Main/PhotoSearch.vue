@@ -47,6 +47,7 @@
 import Map from "@/components/map/Map.vue";
 
 export default {
+  name: "photosearch",
   components: {
     Map,
   },
