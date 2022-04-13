@@ -27,8 +27,20 @@
         </v-card>
         <br />
         <v-card>
-          <v-card-title>Исходные данные: {{ coordinates }}</v-card-title>
           <v-img :src="url" aspect-ratio="1.7"></v-img>
+          <v-card-text>
+            <v-btn 
+              v-if="points != ''"
+              :color="$route.meta.theme"
+              class="mt-5 white--text"
+              @click="exportExcel"
+            >
+              Экспортировать
+            <v-icon right>
+              mdi-apple-keyboard-caps
+            </v-icon>
+          </v-btn>
+          </v-card-text>
         </v-card>
       </v-col>
 
@@ -45,6 +57,7 @@
 
 <script>
 import Map from "@/components/map/Map.vue";
+import { saveExcel } from '@progress/kendo-vue-excel-export';
 
 export default {
   name: "photosearch",
@@ -64,6 +77,7 @@ export default {
       center: [59.937, 30.3089],
       zoom: 10,
       load: false,
+      dataphoto: []
     };
   },
 
@@ -86,11 +100,28 @@ export default {
           this.coordinates = response.data.geometry.coordinates
           this.center = response.data.geometry.coordinates;
           this.zoom = 12;
+          this.dataphoto =[{
+            'Файл': this.file.name,
+            'Широта': this.coordinates[0],
+            'Долгота': this.coordinates[1],
+          }]
         })
         .finally(()=>{
           this.load = false
       })
-    }
+    },
+    exportExcel () {
+      console.log(this.dataphoto);
+            saveExcel({
+                data: this.dataphoto,
+                fileName: "Photolocation.xlsx",
+                columns: [
+                  { field: 'Файл'},
+                  { field: 'Широта'},
+                  { field: 'Долгота'},
+              ]
+            });
+        },
   },
 
   computed: {
