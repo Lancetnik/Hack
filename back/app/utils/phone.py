@@ -4,6 +4,8 @@ import time
 from .proxy import proxy
 from map.serializers import PointSerializer
 
+from loguru import logger
+
 
 def get_phone_data(phone: str): 
     r = requests.get(

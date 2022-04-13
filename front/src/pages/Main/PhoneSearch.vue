@@ -79,6 +79,17 @@
                   indeterminate
                   color="green"
                 ></v-progress-circular>
+                    <v-btn 
+                        v-if="city != ''"
+                        :color="$route.meta.theme"
+                        class="mt-5 white--text"
+                        @click="exportExcel"
+                      >
+                        Экспортировать
+                      <v-icon right>
+                        mdi-apple-keyboard-caps
+                      </v-icon>
+                    </v-btn>
               </v-card-text>
             </v-card>
       </v-col>
@@ -94,6 +105,7 @@
 
 <script>
 import Map from "@/components/map/MapPhone.vue";
+import { saveExcel } from '@progress/kendo-vue-excel-export';
 
 export default {
   name: "First",
@@ -116,11 +128,34 @@ export default {
         this.center = [response.data.location.geo_city.latitude, response.data.location.geo_city.longitude]
         this.points = [response.data.point]
         this.zoom = 20
+        this.dataexcel=[{
+                        'Телефон': this.phone, 
+                        'Оператор':this.operator, 
+                        'Город':this.city, 
+                        'Широта':this.latitude,
+                        'Долгота':this.longitude
+                        }]
       })
       .finally(()=>{
         this.load = false
       })
-    }
+      
+    },
+    exportExcel () {
+      console.log(this.dataexcel);
+            saveExcel({
+                data: this.dataexcel,
+                fileName: "Phonelocation.xlsx",
+                columns: [
+                  { field: 'Телефон'},
+                  { field: 'Оператор'},
+                  { field: 'Город'},
+                  { field: 'Широта'},
+                  { field: 'Долгота'},
+              ]
+            });
+        },
+    
   },
 
   data: () => ({
@@ -133,6 +168,7 @@ export default {
     load: false,
     center: [59.937, 30.3089],
     zoom: 10,
+    dataexcel: []
 
 
   })

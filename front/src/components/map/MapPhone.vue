@@ -13,6 +13,7 @@
     marker-id="123" 
     hint-content="some hint"
     marker-type="polyline" 
+    :icon="markerIcon"
     :marker-stroke="{width: '5px', color: '#FF0000'}"
     @click="dialog=true"
   >
@@ -49,6 +50,8 @@ import { loadYmap } from "vue-yandex-maps";
 
 export default {
   name: "Map",
+
+  
 
   props: {
     points: Array,
@@ -94,6 +97,15 @@ export default {
     dialog: false,
     clusterMap: null,
     objectManager: null,
+    markerIcon: {
+      layout: 'default#imageWithContent',
+      imageHref: 'https://masterprintspb.ru/wp-content/uploads/2014/10/Map-Marker-PNG-File.png',
+      imageSize: [43, 43],
+      imageOffset: [0, 0],
+      content: '123 v12',
+      contentOffset: [0, 15],
+      contentLayout: '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+    },
   }),
 
   methods: {

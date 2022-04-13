@@ -70,6 +70,20 @@
                   </v-icon>
                 </template>
               </v-data-table>
+              <v-card-text>
+                <v-btn 
+                    v-if="users_info.length>0"
+                    :color="$route.meta.theme"
+                    class="mt-5 white--text"
+                    @click="exportExcel"
+                  >
+                    Экспортировать
+                  <v-icon right>
+                    mdi-apple-keyboard-caps
+                  </v-icon>
+                </v-btn>
+              </v-card-text>
+              
             </v-card>
         </v-col>
       <v-col md="9">
@@ -85,6 +99,7 @@
 
 <script>
 import Map from "@/components/map/MapStrava.vue";
+import { saveExcel } from '@progress/kendo-vue-excel-export';
 
 export default {
     props: {
@@ -139,10 +154,21 @@ methods: {
     getroute(route){
       this.coords = route.coordinates
       this.user = route.name
-      console.log(this.coords)
       this.center = this.coords[0]
       this.zoom = 16
   },
+    exportExcel () {
+
+            saveExcel({
+                data: this.users_info,
+                fileName: "Routes.xlsx",
+                columns: [
+                  { field: 'name', title: 'Имя'},
+                  { field: 'id', title: 'Идентификатор'},
+                  { field: 'coordinates',  title: 'Маршрут'},
+              ]
+            });
+        },
   },
 created() {
   this.center = [this.latitude_1, this.longitude_1]

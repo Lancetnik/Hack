@@ -10,6 +10,7 @@
     @map-was-initialized="getMapInstance"
   >
   <ymap-marker 
+      
       :coords="coords" 
       marker-id="123" 
       :hint-content="user"
@@ -62,6 +63,15 @@ export default {
     yandexMap, ymapMarker
   },
   data: () => ({
+    markerIcon: {
+      layout: 'default#imageWithContent',
+      imageHref: 'https://masterprintspb.ru/wp-content/uploads/2014/10/Map-Marker-PNG-File.png',
+      imageSize: [43, 43],
+      imageOffset: [0, 0],
+      content: '123 v12',
+      contentOffset: [0, 15],
+      contentLayout: '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+    },
     settings: {
       apiKey: "e70694c3-ce7f-4459-b7f6-be3d53e2cc8e",
       lang: "ru_RU",
