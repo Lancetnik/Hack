@@ -1,5 +1,6 @@
 import requests
 import time
+from django.core.cache import cache
 
 from .proxy import proxy
 from map.serializers import PointSerializer
@@ -24,6 +25,8 @@ def get_phone_data(phone: str):
             "longitude": resp['location']['geo_city']["longitude"]
         })
     point.is_valid()
+    logger.debug(resp['location']['geo_city']["latitude"])
+    cache.set('phone_coordinate',[float(resp['location']['geo_city']["latitude"]), float(resp['location']['geo_city']["longitude"])])
     resp.update({'point' : point.data})
 
     return resp

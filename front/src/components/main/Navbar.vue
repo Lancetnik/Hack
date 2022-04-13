@@ -22,6 +22,7 @@ export default {
 
   data: () => ({
     headers: [
+      { route: "dataAgregation", name:"Последовательный сбор данных"},
       { route: "phonesearch", name: "Отслеживание номера телефона" },
       { route: "strava", name: "Отслеживаие передвижений" },
       { route: "photo", name: "Поиск места по фото" },

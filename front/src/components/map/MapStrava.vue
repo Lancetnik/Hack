@@ -15,7 +15,9 @@
       marker-id="123" 
       :hint-content="user"
       marker-type="polyline" 
-      :marker-stroke="{width: '5px', color: '#FF0000'}"
+      :marker-stroke="{width: '5px',
+      color: '#FF0000', 
+      }"
     />
   <ymap-marker 
       :coords="first_coord" 
@@ -57,7 +59,10 @@ export default {
 
     zoom(val) {
       this.clusterMap.setCenter(this.center, val)
-    }
+    },
+    first_coord(val) {
+      this.setPoints(val);
+    },
   },
   components: {
     yandexMap, ymapMarker
@@ -78,15 +83,15 @@ export default {
       coordorder: "latlong",
       enterprise: false,
       version: "2.1",
-      markerIcon: {
+    },
+    markerIcon: {
       layout: 'default#imageWithContent',
       imageHref: 'https://image.flaticon.com/icons/png/512/33/33447.png',
-      imageSize: [43, 43],
+      imageSize: [70, 70],
       imageOffset: [0, 0],
-      content: '123 v12',
+      content: 'Объект',
       contentOffset: [0, 15],
-      contentLayout: '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
-    }
+      contentLayout: '<div style="background: red; border-radius: 10px; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
     },
     center: [59.937, 30.3089],
     clusterMap: null,
@@ -119,29 +124,33 @@ export default {
       if (map) {
         try {
           this.clusterMap = map;
-          console.log(points)
+          this.clusterMap.geoObjects.events.add("click", (e) =>
+            this.clickPoint(e)
+          );
+
           this.objectManager = new ymaps.ObjectManager({
             clusterize: true,
             gridSize: 32,
             clusterDisableClickZoom: true,
           });
-          this.clusterMap.geoObjects.events.add("click", (e) =>
-            this.clickPoint(e)
-          );
-          try {
-            this.objectManager.add(this.points);
-            this.clusterMap.geoObjects.add(this.objectManager);
-          } catch (error) {
-            console.log("no points!");
-          }
+          this.clusterMap.geoObjects.add(this.objectManager);
+
+          this.setPoints(this.points);
         } catch (error) {
           console.log(error);
         }
       }
     },
-    async onClick(e) {
-      this.coords = e.get('coords');
 
+    setPoints(points) {
+      if (this.clusterMap) {
+        this.objectManager.removeAll()
+        try {
+          this.objectManager.add(points);
+        } catch (error) {
+          console.log("no points!");
+        }
+      }
     },
   },
   async mounted() {

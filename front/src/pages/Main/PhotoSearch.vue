@@ -60,6 +60,7 @@ import Map from "@/components/map/Map.vue";
 import { saveExcel } from '@progress/kendo-vue-excel-export';
 
 export default {
+  name: "photosearch",
   components: {
     Map,
   },

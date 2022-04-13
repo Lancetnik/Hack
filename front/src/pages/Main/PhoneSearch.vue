@@ -108,7 +108,7 @@ import Map from "@/components/map/MapPhone.vue";
 import { saveExcel } from '@progress/kendo-vue-excel-export';
 
 export default {
-  name: "First",
+  name: "phonesearch",
 
   components: {
     Map

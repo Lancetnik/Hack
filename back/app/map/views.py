@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.core.cache import cache
 
 from PIL import Image
 import random
@@ -22,4 +23,5 @@ class GetLocation(APIView):
             'longitude': result_model[1]            
         })
         point.is_valid()
+        cache.set('photo_coordinates', result_model)
         return Response(point.data)

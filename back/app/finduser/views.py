@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -26,3 +27,22 @@ class FindUserByPhone(generics.CreateAPIView):
             get_phone_data(request.data['phone']),
             status=status.HTTP_200_OK
         )
+
+
+class GetCacheView(APIView):
+
+    def get(self, request):
+        return Response({
+            'photo_coordinates':cache.get('photo_coordinates'),
+            'social_vk': cache.get('social_vk'),
+            'phone_coordinates': cache.get('phone_coordinate')
+                    })
+
+
+class CleanCacheView(APIView):
+
+    def get(self, request):
+        cache.set('photo_coordinates', ''),
+        cache.set('social_vk', ''),
+        cache.set('phone_coordinate', '')
+        return Response(200)
