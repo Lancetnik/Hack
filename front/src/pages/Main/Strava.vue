@@ -44,7 +44,13 @@
                     mdi-animation-outline
                     </v-icon>
                     </v-btn>
+                    
                 </v-card-actions>
+                <v-progress-linear
+                        v-if="this.load==true"
+                        indeterminate
+                        color="primary"
+                      ></v-progress-linear>
               <v-data-table
                 :headers="headers"
                 :items="users_info"
@@ -126,6 +132,7 @@ export default {
     users_info: [],
     center: [59.937, 30.3089],
     first_coord: [],
+    load: false,
     zoom: 10,
     // Таблица
     search: '',
@@ -147,8 +154,10 @@ export default {
   },
 methods: {
     get_coordinates() {
+    this.load = true;
     this.$http.get('strava/polyline/').then((response) => {
         this.users_info = response.data
+        this.load = false;
     })
   },
     getroute(route){
