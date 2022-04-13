@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     'map',
     'vkscraper',
-    'finduser'
+    'finduser',
+    'findStrava'
 ]
 
 REST_FRAMEWORK = {

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <h1>WebSocket Chat</h1>
+    <h1>WebSocke Chat</h1>
 
     <v-text-field v-model="text"></v-text-field>
     <v-btn @click="sendMessage(text)">Send</v-btn>

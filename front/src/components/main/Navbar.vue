@@ -22,8 +22,8 @@ export default {
 
   data: () => ({
     headers: [
-      { route: "first", name: "Отслеживание номера телефона" },
-      { route: "map", name: "Отслеживаие передвижений" },
+      { route: "phonesearch", name: "Отслеживание номера телефона" },
+      { route: "strava", name: "Отслеживаие передвижений" },
       { route: "photo", name: "Поиск места по фото" },
       { route: "findclone", name: "Поиск страницы по фото"}
     ]

@@ -1,11 +1,11 @@
 import requests
+import time
 
 from .proxy import proxy
 from map.serializers import PointSerializer
 
 
 def get_phone_data(phone: str): 
-    print(phone)
     r = requests.get(
         'https://xn----7sbqamfrkhj2bc3a.com/emulator/check',
         params={

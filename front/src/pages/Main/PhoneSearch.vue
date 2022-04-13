@@ -12,7 +12,10 @@
             color="success"
           ></v-progress-linear>
           <v-card-text>
-            <phoneInput v-model='phone'/>
+            <v-text-field
+            label = 'Номер телефона'
+             v-model='phone'>
+            </v-text-field>
             <v-btn
               :color="$route.meta.theme"
               class=" white--text"
@@ -81,7 +84,7 @@
       </v-col>
       <v-col md="9">
         <v-card class="ma-4">
-          <Map :points='points' style='height: 650px; width: 100%'/>
+          <Map :points='points' :center='center' :zoom='zoom' style='height: 650px; width: 100%'/>
         </v-card>
       </v-col>
     </v-row>
@@ -90,15 +93,13 @@
 
 
 <script>
-import Map from "@/components/map/Map.vue";
-import phoneInput from "@/components/phoneField.vue"
+import Map from "@/components/map/MapPhone.vue";
 
 export default {
   name: "First",
 
   components: {
-    Map,
-    phoneInput
+    Map
   },
 
   methods: {
@@ -112,7 +113,9 @@ export default {
         this.city = response.data.location.city,
         this.latitude = response.data.location.geo_city.latitude,
         this.longitude = response.data.location.geo_city.longitude,
+        this.center = [response.data.location.geo_city.latitude, response.data.location.geo_city.longitude]
         this.points = [response.data.point]
+        this.zoom = 20
       })
       .finally(()=>{
         this.load = false
@@ -127,7 +130,9 @@ export default {
     region: "",
     city: "",
     location: '',
-    load: false
+    load: false,
+    center: [59.937, 30.3089],
+    zoom: 10,
 
 
   })

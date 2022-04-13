@@ -14,7 +14,30 @@
     hint-content="some hint"
     marker-type="polyline" 
     :marker-stroke="{width: '5px', color: '#FF0000'}"
-  />
+    @click="dialog=true"
+  >
+    <v-row justify="center">
+      <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="330px"
+      >
+        <v-card>
+          <v-card-title>
+            Данные о точке:
+          </v-card-title>
+          <v-card-actions>
+            <v-btn class="mr-4" type="submit" @click="analyze_strava(points)" dark color="green">
+              Анализ Strava
+            </v-btn>
+            <v-btn class="mr-4" type="submit" right @click="dialog=false" dark color="green">
+              Закрыть
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+  </ymap-marker>
   </yandex-map>
 </template>
 
@@ -68,7 +91,7 @@ export default {
       enterprise: false,
       version: "2.1",
     },
-
+    dialog: false,
     clusterMap: null,
     objectManager: null,
   }),
@@ -83,6 +106,7 @@ export default {
       } else {
         let point = this.objectManager.objects.getById(target);
         console.log("point clicked");
+        this.dialog = true
       }
     },
 
@@ -118,6 +142,17 @@ export default {
         }
       }
     },
+    analyze_strava(points) {
+      this.$router.push({name: 'strava', params:{
+        latitude_1: points[0].geometry.coordinates[0] - 0.005, 
+        longitude_1: points[0].geometry.coordinates[1] - 0.005,
+        latitude_2: points[0].geometry.coordinates[0] + 0.005,
+        longitude_2: points[0].geometry.coordinates[1] + 0.005  
+          },
+        center: [points[0].geometry.coordinates[0], points[0].geometry.coordinates[1]]
+        }
+      ); 
+    }
   },
 
   async mounted() {
